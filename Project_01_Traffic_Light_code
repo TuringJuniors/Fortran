@@ -1,0 +1,66 @@
+class LED   
+{
+  public:
+    int pin;            // LED's pin on arduino
+    int duration;       // LED's lifetime 
+    void on();          // turn the led on
+    void off();         // turn the led off
+};
+
+
+
+void LED::on()
+{
+  digitalWrite(pin,HIGH);
+}
+
+
+void LED::off()
+{
+  digitalWrite(pin,LOW); 
+}
+
+#define RED 13
+#define GREEN 11
+#define YELLOW 12
+
+
+void setup()
+{
+
+
+pinMode(RED,OUTPUT);
+pinMode(YELLOW,OUTPUT);
+pinMode(GREEN,OUTPUT);
+}
+
+void loop()
+{
+
+LED red,yellow,green;
+red.pin=RED;               // set the pin for RED LED
+red.duration=1000;         // set the lieftime for RED LED for 1000 millisecond(s)
+green.pin=GREEN;           // set the pin for GREEN LED
+green.duration=1000;       // set the lieftime for GREEN LED for 1000 millisecond(s)
+yellow.pin=YELLOW;         // set the pin for YELLOW LED
+yellow.duration=1000;      // set the lieftime for YELLOW LED for 1000 millisecond(s)
+
+green.on();                // turn the GREEN LED on
+delay(green.duration);     
+green.off();               // turn the GREEN LED off
+yellow.on();               // turn the YELLOW LED on
+delay(yellow.duration);
+yellow.off();              // turn the YELLOW LED off
+red.on();                  // turn the RED LED on
+delay(red.duration);
+red.off();                 // turn the RED LED off
+yellow.on();               // turn the YELLOW LED on
+delay(yellow.duration);
+yellow.off();              // turn the YELLOW LED off
+
+
+}
+
+
+
+
