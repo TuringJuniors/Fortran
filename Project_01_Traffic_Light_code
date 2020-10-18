@@ -1,66 +1,62 @@
-class LED   
-{
-  public:
-    int pin;            // LED's pin on arduino
-    int duration;       // LED's lifetime 
-    void on();          // turn the led on
-    void off();         // turn the led off
-};
-
-
-
-void LED::on()
-{
-  digitalWrite(pin,HIGH);
-}
-
-
-void LED::off()
-{
-  digitalWrite(pin,LOW); 
-}
 
 #define RED 13
 #define GREEN 11
 #define YELLOW 12
-
+#define YELLOW2 10
 
 void setup()
 {
-
-
-pinMode(RED,OUTPUT);
-pinMode(YELLOW,OUTPUT);
-pinMode(GREEN,OUTPUT);
+  pinMode(RED, OUTPUT);
+  pinMode(YELLOW, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(YELLOW2, OUTPUT);
 }
 
-void loop()
+
+ void loop()
 {
-
-LED red,yellow,green;
-red.pin=RED;               // set the pin for RED LED
-red.duration=1000;         // set the lieftime for RED LED for 1000 millisecond(s)
-green.pin=GREEN;           // set the pin for GREEN LED
-green.duration=1000;       // set the lieftime for GREEN LED for 1000 millisecond(s)
-yellow.pin=YELLOW;         // set the pin for YELLOW LED
-yellow.duration=1000;      // set the lieftime for YELLOW LED for 1000 millisecond(s)
-
-green.on();                // turn the GREEN LED on
-delay(green.duration);     
-green.off();               // turn the GREEN LED off
-yellow.on();               // turn the YELLOW LED on
-delay(yellow.duration);
-yellow.off();              // turn the YELLOW LED off
-red.on();                  // turn the RED LED on
-delay(red.duration);
-red.off();                 // turn the RED LED off
-yellow.on();               // turn the YELLOW LED on
-delay(yellow.duration);
-yellow.off();              // turn the YELLOW LED off
-
-
+   int LED=RED;YELLOW;YELLOW2;GREEN; 
+   
+ switch (LED)
+ {
+  case RED:      
+  digitalWrite(13, HIGH);   // turn the RED LED on (HIGH is the voltage level)
+  delay(3000); // Wait for 3000 millisecond(s)
+ 
+  digitalWrite(13, LOW);   // turn the RED LED off by making the voltage LOW
+  delay(1000); // Wait for 1000 millisecond(s);
+   
+   
+  case YELLOW:
+  digitalWrite(12, HIGH);   // turn the YELLOW LED on (HIGH is the voltage level)
+  delay(1500); // Wait for 1000 millisecond(s)
+ 
+  digitalWrite(12, LOW);    // turn the YELLOW LED off by making the voltage LOW
+  delay(1500); // Wait for 1000 millisecond(s);
+   
+  
+  case GREEN:
+  digitalWrite(11, HIGH);   // turn the GREEN LED on (HIGH is the voltage level)
+  delay(1500); // Wait for 1000 millisecond(s)
+      
+  digitalWrite(11, LOW);    // turn the Green LED off by making the voltage LOW
+  delay(1500); // Wait for 1000 millisecond(s);
+   
+   
+ 
+    
+  
+  default:
+  case YELLOW2:
+  digitalWrite(10, HIGH);   // turn the YELLOW2 LED on (HIGH is the voltage level)
+  delay(1500); // Wait for 1000 millisecond(s)
+ 
+  digitalWrite(10, LOW);    // turn the YELLOW2 LED off by making the voltage LOW
+  delay(1500); // Wait for 1000 millisecond(s);
+  
+  } 
+    
 }
-
-
-
+   
+  
 
