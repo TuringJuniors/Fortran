@@ -1,8 +1,9 @@
 
+
 #define RED 13
-#define GREEN 11
+#define GREEN 10
 #define YELLOW 12
-#define YELLOW2 10
+#define YELLOW2 11
 
 void setup()
 {
@@ -36,10 +37,10 @@ void setup()
    
   
   case GREEN:
-  digitalWrite(11, HIGH);   // turn the GREEN LED on (HIGH is the voltage level)
+  digitalWrite(10, HIGH);   // turn the GREEN LED on (HIGH is the voltage level)
   delay(1500); // Wait for 1000 millisecond(s)
       
-  digitalWrite(11, LOW);    // turn the Green LED off by making the voltage LOW
+  digitalWrite(10, LOW);    // turn the Green LED off by making the voltage LOW
   delay(1500); // Wait for 1000 millisecond(s);
    
    
@@ -48,15 +49,17 @@ void setup()
   
   default:
   case YELLOW2:
-  digitalWrite(10, HIGH);   // turn the YELLOW2 LED on (HIGH is the voltage level)
+  digitalWrite(11, HIGH);   // turn the YELLOW2 LED on (HIGH is the voltage level)
   delay(1500); // Wait for 1000 millisecond(s)
  
-  digitalWrite(10, LOW);    // turn the YELLOW2 LED off by making the voltage LOW
+  digitalWrite(11, LOW);    // turn the YELLOW2 LED off by making the voltage LOW
   delay(1500); // Wait for 1000 millisecond(s);
   
   } 
     
 }
    
+  
+
   
 
