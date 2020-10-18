@@ -51,10 +51,10 @@ void setup()
 
 red_car.pin = 13;
 yellow_car.pin = 12;
-green_car.pin = 11;
+green_car.pin = 10;
 red_pedestrian.pin =  3;
-green_pedestrian.pin =4;
-wait_pedestrian.pin =5;
+green_pedestrian.pin =5;
+wait_pedestrian.pin =4;
 
 Button.pin=6;
 
