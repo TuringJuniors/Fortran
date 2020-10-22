@@ -1,5 +1,17 @@
+<<<<<<< HEAD
 
 zafirul izzat
 
 Hadi Imran
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+Zafirul
+=======
+apa apa
+>>>>>>> ddb36403b67666b86de948b3043e295e84104774
+=======
+Hadi Imran
+>>>>>>> 906f4a11f7e193ce738b94faf4fd15deb59f36a1
+>>>>>>> bd02d535ff1dd9ab0633b020b13a529d16900004
