@@ -1,9 +1,9 @@
 class LED   
 {
   public:
-    int pin;            // LED's pin on arduino 
-    void on();          // turn the led on
-    void off();         // turn the led off
+    int pin;            // LED's pin on arduino.
+    void on();          // turn the led on.
+    void off();         // turn the led off.
 };
 class BUTTON   
 {
