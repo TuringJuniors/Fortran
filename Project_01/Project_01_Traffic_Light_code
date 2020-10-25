@@ -55,9 +55,9 @@ yellow.duration=1000;      // set the lieftime for YELLOW LED for 1000 milliseco
 switch(state)
 {
   case MOVE:
-    green.on();                // turn the GREEN LED on
-    yellow.off();              // turn the YELLOW LED off
-    red.off();                 // turn the RED LED off
+    green.on();                // turn the GREEN LED on.
+    yellow.off();              // turn the YELLOW LED off.
+    red.off();                 // turn the RED LED off.
     delay(green.duration);
     state = 1;
     break;
