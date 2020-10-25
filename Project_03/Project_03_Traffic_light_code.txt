@@ -4,64 +4,186 @@ class LED
     int pin;
     void on();
     void off();
+    
 };
-
-class Button
+class BUTTON
 {
-    public:
-    int pin;
-    int digitalRead(pin);
+   public:
+   int pin;
+   int state;
+    
 };
 
-LED green_car,red_car,yellow_car,green_pedestrian,wait_pedestrian,red_pedestrian;
-Button button_pedestrian,button_bus;
+LED red_car, yellow_car, green_car, red_pedestrian, green_pedestrian, wait_pedestrian;
+BUTTON button_pedestrian, button_bus;
 
 void LED::on()
 {
     digitalWrite(pin,HIGH);
 }
-
 void LED::off()
 {
-    digitalWrite(pin,LOW);
+    digitalWrite(pin,LOW);  
 }
-
 void UPDATE_INPUT()
 {
     button_pedestrian.state=digitalRead(button_pedestrian.pin);
     button_bus.state=digitalRead(button_bus.pin);
 }
 
-button_pedestrian.state=0
-button_bus.state=0
 
-#define car_move 0;
-#define car_ready_stop 1;
-#define car_stop 2;
-#define car_ready_move 3;
-#define bus_comming 4;
+//button_pedestrian.state=0;
+//button_bus.state=0;
+#define car_move 0
+#define car_ready_stop 1
+#define car_stop 2
+#define car_ready_move 3
+#define bus_comming 4
 
-int state 0;
+int state_case=0;
+
+unsigned long start_time = millis();
+unsigned long start_time_sub = millis();
 
 void setup()
 {
-
-green_car.pin=10;
-yellow_car.pin=12;
-red_car.pin=13;
-green_pedestrian.pin=5;
-wait_pedestrian.pin=4;
-red_pedestrian.pin=3;
+red_car.pin = 13;
+yellow_car.pin = 12;
+green_car.pin = 10;
+red_pedestrian.pin =  3;
+green_pedestrian.pin =5;
+wait_pedestrian.pin =4;
 
 button_pedestrian.pin=6;
 button_bus.pin=2;
 
-pinMode(green_car.pin,OUTPUT);
-pinMode(yellow_car.pin,OUTPUT);
 pinMode(red_car.pin,OUTPUT);
+pinMode(yellow_car.pin,OUTPUT);
+pinMode(green_car.pin,OUTPUT);
+pinMode(red_pedestrian.pin,OUTPUT);
 pinMode(green_pedestrian.pin,OUTPUT);
 pinMode(wait_pedestrian.pin,OUTPUT);
-pinMode(red_pedestrian.pin,OUTPUT);
 pinMode(button_pedestrian.pin,INPUT);
 pinMode(button_bus.pin,INPUT);
 }
+
+void loop()
+{
+  
+button_pedestrian.state=0;
+button_bus.state=0;
+    switch(state_case)
+    {
+
+        case car_move:
+        start_time = millis();
+        green_car.on();
+        while((millis()-start_time)<20000)
+        {
+        red_pedestrian.on();
+        UPDATE_INPUT();
+        
+        if(button_pedestrian.state==1)
+            {
+                start_time_sub = millis();
+                while((millis()-start_time_sub)<10000)
+                {
+                    wait_pedestrian.on();
+
+                }
+                    green_car.off();
+                    state_case = car_ready_stop;
+                    break;
+            }
+        else if(button_bus.state==1 && button_pedestrian.state==0)
+            {
+                state_case = bus_comming;
+                break;
+            }
+       else
+       {
+       }
+   
+        }
+        break;
+
+        case bus_comming:
+        start_time = millis();
+        while((millis()-start_time)<10000)
+        {
+        UPDATE_INPUT();
+        if (button_pedestrian.state==1)
+             {
+            
+                wait_pedestrian.on();
+            
+             }
+        
+        }
+        state_case = car_move;
+        break;
+   
+        case car_ready_stop:
+        start_time = millis();
+        while((millis()-start_time)<3000)
+             {
+        yellow_car.on();
+             }
+        yellow_car.off();
+        state_case = car_stop;
+        break;
+        
+        case car_stop:
+        red_car.on();
+        start_time = millis();
+        
+        while((millis()-start_time)<5000)
+             {
+                 red_pedestrian.off();
+                 wait_pedestrian.off();
+                 UPDATE_INPUT();
+                 green_pedestrian.on();
+             }
+        start_time = millis();
+         while((millis()-start_time)<5000 && button_bus.state==0);
+             {
+                 red_pedestrian.off();
+                 wait_pedestrian.off();
+                 UPDATE_INPUT();
+                 green_pedestrian.on();
+             }  
+             
+        green_pedestrian.off();
+        red_pedestrian.on();
+        red_car.off();
+        state_case = car_ready_move;
+        break;
+        
+    
+        case car_ready_move:
+        start_time = millis();
+        while((millis()-start_time)<1000)
+             {
+                 yellow_car.on();
+             }
+        yellow_car.off();
+        state_case = car_move;
+        break;
+
+        default:
+        break;
+        
+             
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
