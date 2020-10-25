@@ -1,0 +1,67 @@
+class LED
+{
+    public:
+    int pin;
+    void on();
+    void off();
+};
+
+class Button
+{
+    public:
+    int pin;
+    int push();
+    int state;
+};
+
+LED green_car,red_car,yellow_car,green_pedestrian,wait_pedestrian,red_pedestrian;
+Button button_pedestrian,button_bus;
+
+void LED::on()
+{
+    digitalWrite(pin,HIGH);
+}
+
+void LED::off()
+{
+    digitalWrite(pin,LOW);
+}
+
+void Button::push()
+{
+ return digitalRead(Button.pin);
+}
+
+
+
+
+#define car_move 0;
+#define car_ready_stop 1;
+#define car_stop 2;
+#define car_ready_move 3;
+#define bus_comming 4;
+
+int state 0;
+
+void setup()
+{
+
+green_car.pin=10;
+yellow_car.pin=12;
+red_car.pin=13;
+green_pedestrian.pin=5;
+wait_pedestrian.pin=4;
+red_pedestrian.pin=3;
+
+button_pedestrian.pin= ;
+button_bus.pin= ;
+
+pinMode(green_car.pin,OUTPUT);
+pinMode(yellow_car.pin,OUTPUT);
+pinMode(red_car.pin,OUTPUT);
+pinMode(green_pedestrian.pin,OUTPUT);
+pinMode(wait_pedestrian.pin,OUTPUT);
+pinMode(red_pedestrian.pin,OUTPUT);
+pinMode(button_pedestrian.pin,INPUT);
+pinMode(button_bus.pin,INPUT);
+}
