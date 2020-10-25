@@ -10,8 +10,7 @@ class Button
 {
     public:
     int pin;
-    int push();
-    int state;
+    int digitalRead(pin);
 };
 
 LED green_car,red_car,yellow_car,green_pedestrian,wait_pedestrian,red_pedestrian;
@@ -27,13 +26,14 @@ void LED::off()
     digitalWrite(pin,LOW);
 }
 
-void Button::push()
+void UPDATE_INPUT()
 {
- return digitalRead(Button.pin);
+    button_pedestrian.state=digitalRead(button_pedestrian.pin);
+    button_bus.state=digitalRead(button_bus.pin);
 }
 
-
-
+button_pedestrian.state=0
+button_bus.state=0
 
 #define car_move 0;
 #define car_ready_stop 1;
@@ -53,8 +53,8 @@ green_pedestrian.pin=5;
 wait_pedestrian.pin=4;
 red_pedestrian.pin=3;
 
-button_pedestrian.pin= ;
-button_bus.pin= ;
+button_pedestrian.pin=6;
+button_bus.pin=2;
 
 pinMode(green_car.pin,OUTPUT);
 pinMode(yellow_car.pin,OUTPUT);
