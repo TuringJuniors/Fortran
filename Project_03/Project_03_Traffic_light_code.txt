@@ -40,7 +40,8 @@ void UPDATE_INPUT()
 #define car_ready_move 3
 #define bus_comming 4
 
-int state_case=0;
+int state_case=3;
+int pedestrian_history=0;
 
 unsigned long start_time = millis();
 unsigned long start_time_sub = millis();
@@ -54,9 +55,10 @@ red_pedestrian.pin =  3;
 green_pedestrian.pin =5;
 wait_pedestrian.pin =4;
 
-button_pedestrian.pin=6;
+button_pedestrian.pin=7;
 button_bus.pin=2;
-
+button_pedestrian.state=0;
+button_bus.state=0;
 pinMode(red_car.pin,OUTPUT);
 pinMode(yellow_car.pin,OUTPUT);
 pinMode(green_car.pin,OUTPUT);
@@ -70,29 +72,29 @@ pinMode(button_bus.pin,INPUT);
 void loop()
 {
   
-button_pedestrian.state=0;
-button_bus.state=0;
+
     switch(state_case)
     {
 
         case car_move:
         start_time = millis();
         green_car.on();
-        while((millis()-start_time)<20000)
+        while((millis()-start_time)<10000)
         {
         red_pedestrian.on();
         UPDATE_INPUT();
         
-        if(button_pedestrian.state==1)
+        if(button_pedestrian.state==1 || pedestrian_history==1)
             {
                 start_time_sub = millis();
-                while((millis()-start_time_sub)<10000)
+                while(millis()-start_time_sub<10000)
                 {
                     wait_pedestrian.on();
 
                 }
                     green_car.off();
                     state_case = car_ready_stop;
+                    pedestrian_history=0;
                     break;
             }
         else if(button_bus.state==1 && button_pedestrian.state==0)
@@ -107,22 +109,24 @@ button_bus.state=0;
         }
         break;
 
+ 
         case bus_comming:
         start_time = millis();
-        while((millis()-start_time)<10000)
+        while(millis()-start_time<10000)
         {
-        UPDATE_INPUT();
-        if (button_pedestrian.state==1)
+          UPDATE_INPUT();
+          if (button_pedestrian.state==1)
              {
             
                 wait_pedestrian.on();
+                pedestrian_history=1;
             
              }
         
         }
         state_case = car_move;
         break;
-   
+ 
         case car_ready_stop:
         start_time = millis();
         while((millis()-start_time)<3000)
@@ -177,6 +181,16 @@ button_bus.state=0;
     }
     
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
