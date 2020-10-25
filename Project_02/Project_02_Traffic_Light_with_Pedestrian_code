@@ -77,11 +77,11 @@ switch(state)
 {
   case car_move:
     green_car.on();
+    red_pedestrian.on();
     while(Button.push()!= 1)
       {
-        red_pedestrian.on();
+	 wait_pedestrian.on();
       }
-    wait_pedestrian.on();
     delay(10000);
     green_car.off();
     state = car_ready_stop;
