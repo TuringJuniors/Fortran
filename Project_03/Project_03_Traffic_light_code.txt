@@ -40,7 +40,7 @@ void UPDATE_INPUT()
 #define car_ready_move 3
 #define bus_comming 4
 
-int state_case=3;
+int state_case=0;
 int pedestrian_history=0;
 
 unsigned long start_time = millis();
@@ -55,7 +55,7 @@ red_pedestrian.pin =  3;
 green_pedestrian.pin =5;
 wait_pedestrian.pin =4;
 
-button_pedestrian.pin=7;
+button_pedestrian.pin=6;
 button_bus.pin=2;
 button_pedestrian.state=0;
 button_bus.state=0;
