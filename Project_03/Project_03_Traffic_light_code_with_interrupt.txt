@@ -1,0 +1,177 @@
+class LED
+{
+    public:
+    int pin;
+    void on();
+    void off();
+    
+};
+class BUTTON
+{
+   public:
+   int pin;
+   int state;
+    
+};
+// declare 
+LED red_car, yellow_car, green_car, red_pedestrian, green_pedestrian, wait_pedestrian;
+BUTTON button_pedestrian, button_bus;
+
+//referance for class's function 
+void LED::on()
+{
+    digitalWrite(pin,HIGH);
+}
+void LED::off()
+{
+    digitalWrite(pin,LOW);  
+}
+void UPDATE_INPUT()
+{
+    button_pedestrian.state=digitalRead(button_pedestrian.pin);
+}
+
+
+//5 state for state diagram
+#define car_move 0
+#define car_ready_stop 1
+#define car_stop 2
+#define car_ready_move 3
+#define bus_comming 4
+
+int state_case=0;                           // initial state
+int car_stop_duration=10000;                // duration for car to stop while the pedestrian crossing the road
+int pedestrian_wait_duration=10000;         // time left for car to move before the light turn to yellow 
+
+unsigned long start_time = millis();
+unsigned long start_time_sub = millis();
+
+void setup()
+{
+
+  // initialize all pins
+  red_car.pin = 13;
+  yellow_car.pin = 12;
+  green_car.pin = 10;
+  red_pedestrian.pin =  3;
+  green_pedestrian.pin =5;
+  wait_pedestrian.pin =4;
+
+  button_pedestrian.pin=6;
+  button_bus.pin=2;
+  button_pedestrian.state=0;
+  pinMode(red_car.pin,OUTPUT);
+  pinMode(yellow_car.pin,OUTPUT);
+  pinMode(green_car.pin,OUTPUT);  
+  pinMode(red_pedestrian.pin,OUTPUT);
+  pinMode(green_pedestrian.pin,OUTPUT);
+  pinMode(wait_pedestrian.pin,OUTPUT);
+  pinMode(button_pedestrian.pin,INPUT);
+  pinMode(button_bus.pin,INPUT);
+
+  //setup for interupt
+  pinMode(button_bus.pin, INPUT);
+  attachInterrupt(digitalPinToInterrupt(button_bus.pin), busComing, CHANGE);
+}
+
+void loop()
+{
+  
+
+    switch(state_case)
+    {
+
+        case car_move:
+        green_car.on();
+        red_pedestrian.on();
+        UPDATE_INPUT();
+        
+        if(button_pedestrian.state==1)
+            {
+                start_time_sub = millis();                                   
+                while(millis()-start_time_sub<pedestrian_wait_duration)                // pedestrian wait for car traffic light chnge to yellow
+                {
+                    wait_pedestrian.on();
+
+                }
+                    green_car.off();
+                    state_case = car_ready_stop;                                      // change state to car_ready_stop state
+                    break;
+            }
+
+       break;
+
+
+        case car_ready_stop:
+        start_time = millis();
+        while((millis()-start_time)<3000)      // yellow light turn on for 3 second 
+             {
+        yellow_car.on();
+             }
+        yellow_car.off();
+        state_case = car_stop;
+        break;
+       
+        case car_stop:
+        red_car.on();
+        start_time = millis();
+        while((millis()-start_time)<car_stop_duration)          // allowed duration for pedestrian to crass the road 
+             {
+                 red_pedestrian.off();
+                 wait_pedestrian.off();
+                 UPDATE_INPUT();
+                 green_pedestrian.on();
+             }
+     
+          
+        green_pedestrian.off();
+        red_pedestrian.on();
+        red_car.off();
+        state_case = car_ready_move;
+        break;
+        
+    
+        case car_ready_move:
+        start_time = millis();
+        while((millis()-start_time)<1000)
+             {
+                 yellow_car.on();
+             }
+        yellow_car.off();
+        state_case = car_move;
+        break;
+
+        default:
+        break;
+        
+             
+    }
+    
+}
+
+
+void busComing()
+{
+  pedestrian_wait_duration=20000;          // extend the green light from 10s to 20s after pedestrian push the button when there is a Bus
+  car_stop_duration=5000;                  // reduce the duration for the pededtrian to cross th eroad from 10s to 5s when there is a Bus
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
