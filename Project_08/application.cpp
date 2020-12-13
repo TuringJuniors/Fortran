@@ -8,6 +8,6 @@ void application :: waitUserResponse(int time){
     
 }
 
-void application :: emergencycall(){
+void application :: emergencyCall(){
     
 }
