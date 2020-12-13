@@ -5,23 +5,22 @@ using namespace std;
 #ifndef SMART_LAMP
 #define SMART_LAMP
 
-class contolHub;
+class controlHub;
 class smartLamp
 {
     public:
     
     bool thiefDetected;
-    bool on;
     
     void blink();
     
     void on();
     
-    smartLamp(contolHub* newController);
+    smartLamp(controlHub* newController);
     
     private:
     
-    controlHub controller;
+    controlHub* controller;
 };
 
 #endif
