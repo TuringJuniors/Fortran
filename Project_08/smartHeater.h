@@ -9,9 +9,7 @@ class controlHub;
 class smartHeater
 {
     public:
-    
-    bool on;
-    
+     
     void on();
     
     smartHeater(controlHub* newController);
