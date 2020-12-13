@@ -26,7 +26,7 @@ class smartDoor
     
     private:
     
-    controlHub controller;
+    controlHub* controller;
     
 };
 
