@@ -1,6 +1,12 @@
+#include <iostream>
+using namespace std;
+
+
+
 #ifndef SMART_DOOR
 #define SMART_DOOR
 
+class controlHub;
 class smartDoor
 {
     public:
@@ -13,9 +19,14 @@ class smartDoor
     int wrongPinCounter;
     
     void unlock();
-        
+    
     bool checkFirstPerson();
-        
+    
+    smartDoor(controlHub* newController);
+    
+    private:
+    
+    controlHub controller;
     
 };
 
