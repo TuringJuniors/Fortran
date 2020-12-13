@@ -6,11 +6,11 @@ class smartLamp
     public:
     
     bool thiefDetected;
-    bool lampOn;
+    bool on;
     
     void blink();
     
-    void smartLampOn();
-}
+    void on();
+};
 
 #endif
