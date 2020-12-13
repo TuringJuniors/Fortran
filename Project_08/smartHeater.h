@@ -5,10 +5,10 @@ class smartHeater
 {
     public:
     
-    bool heaterOn;
+    bool on;
     
-    void smartHeaterOn();
+    void on();
         
-}
+};
 
 #endif
