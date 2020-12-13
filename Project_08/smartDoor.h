@@ -8,7 +8,7 @@ class smartDoor
     int pinNumber;
     bool thiefDetected;
     bool doorUnlock;
-    bool pin;
+    bool pinCorrect;
     string detectedFace;
     int wrongPinCounter;
     
@@ -17,6 +17,6 @@ class smartDoor
     bool checkFirstPerson();
         
     
-}
+};
 
 #endif
