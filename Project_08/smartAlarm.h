@@ -8,6 +8,6 @@ class smartAlarm
     bool thiefDetected;
     
     void ring();
-}
+};
 
 #endif
