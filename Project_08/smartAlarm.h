@@ -5,7 +5,7 @@ using namespace std;
 #ifndef SMART_ALARM
 #define SMART_ALARM
 
-class controllHub;
+class controlHub;
 class smartAlarm
 {
     public:
@@ -14,11 +14,11 @@ class smartAlarm
     
     void ring();
     
-    smartAlarm(controllHub* newController);
+    smartAlarm(controlHub* newController);
     
     private:
     
-    controllHub controller;
+    controlHub* controller;
 };
 
 #endif
