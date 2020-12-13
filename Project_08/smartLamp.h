@@ -11,7 +11,6 @@ class smartLamp
     public:
     
     bool thiefDetected;
-    bool on;
     
     void blink();
     
