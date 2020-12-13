@@ -1,6 +1,11 @@
+#include <iostream>
+using namespace std;
+
+
 #ifndef APPLICATION
 #define APPLICATION
 
+class contollHub;
 class application
 {
     public:
@@ -12,6 +17,12 @@ class application
     void waitUserResponse(int time);
 
     void emergencyCall();
+    
+    smartDoor(controlHub* newController);
+    
+    private:
+    
+    controlHub controller;
  
 };
 
