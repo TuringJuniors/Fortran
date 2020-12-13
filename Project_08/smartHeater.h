@@ -18,7 +18,7 @@ class smartHeater
     
     private:
     
-    controlHub controller;
+    controlHub* controller;
     
 };
 
