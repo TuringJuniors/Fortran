@@ -5,7 +5,7 @@ using namespace std;
 #ifndef SMART_LAMP
 #define SMART_LAMP
 
-class contolHub;
+class controlHub;
 class smartLamp
 {
     public:
@@ -17,11 +17,11 @@ class smartLamp
     
     void on();
     
-    smartLamp(contolHub* newController);
+    smartLamp(controlHub* newController);
     
     private:
     
-    controlHub controller;
+    controlHub* controller;
 };
 
 #endif
