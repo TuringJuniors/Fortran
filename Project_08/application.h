@@ -5,7 +5,7 @@ using namespace std;
 #ifndef APPLICATION
 #define APPLICATION
 
-class contollHub;
+class controlHub;
 class application
 {
     public:
@@ -18,11 +18,11 @@ class application
 
     void emergencyCall();
     
-    smartDoor(controlHub* newController);
+    application(controlHub* newController);
     
     private:
     
-    controlHub controller;
+    controlHub* controller;
  
 };
 
