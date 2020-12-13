@@ -4,6 +4,6 @@ void smartLamp :: blink(){
     
 }
 
-void smartLamp :: smartLampOn(){
+void smartLamp :: on(){
     
 }
