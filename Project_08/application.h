@@ -7,12 +7,12 @@ class application
     
     bool userResponse;
     
-    void notify(thiefDetected);
+    void notify(bool thiefDetected);
     
-    void waitUserResponse(time);
+    void waitUserResponse(int time);
 
-    void emergencycall();
+    void emergencyCall();
  
-}
+};
 
 #endif
