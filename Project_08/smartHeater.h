@@ -1,14 +1,23 @@
+#include <iostream>
+using namespace std;
+
+
 #ifndef SMART_HEATER
 #define SMART_HEATER
 
+class controlHub;
 class smartHeater
 {
     public:
+     
+    void on();
     
-    bool heaterOn;
+    smartHeater(controlHub* newController);
     
-    void smartHeaterOn();
-        
-}
+    private:
+    
+    controlHub* controller;
+    
+};
 
 #endif
