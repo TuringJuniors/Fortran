@@ -7,6 +7,7 @@ class smartLamp;
 class smartAlarm;
 class smartDoor;
 class application;
+class smartWindow;
 
 #ifndef CONTROL_HUB
 #define CONTROL_HUB
@@ -18,6 +19,7 @@ public:
 	void addAlarm(smartAlarm* newAlarm);
 	void addDoor(smartDoor* newDoor);
 	void addApplication(application* newApp);
+	void addWindow(smartWindow* newWindow);
 	bool thiefDetected;
 	bool userResponse;
 
@@ -26,6 +28,6 @@ public:
 	list<smartAlarm*> alarmList;
 	list<smartDoor*> doorList;
 	list<application*> appList;
+	list<smartWindow*> windowList;
 };
 #endif 
-
