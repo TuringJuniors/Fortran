@@ -5,6 +5,7 @@
 #include "smartLamp.h"
 #include "smartDoor.h"
 #include "application.h"
+#include "smartWindow.h"
 
 
 #define THIEF_DETECTED 0
@@ -25,12 +26,15 @@ int main()
 	smartLamp lamp1(&controlHub1);
 	smartDoor door1(&controlHub1);
 	application app1(&controlHub1);
+	smartWindow window1(&controlHub1);
+
 
 	controlHub1.addHeater(&heater1);
 	controlHub1.addAlarm(&alarm1);
 	controlHub1.addLamp(&lamp1);
 	controlHub1.addDoor(&door1);
 	controlHub1.addApplication(&app1);
+	controlHub1.addWindow(&window1);
 
 	//initialize
 	door1.wrongPinCounter = 0;
@@ -66,6 +70,7 @@ int main()
 				app1.emergencyCall();
 				alarm1.ring();
 				lamp1.blink();
+				window1.close();
 				break;
 			}
 		case MEMBER_ENTERING:
