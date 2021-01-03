@@ -16,8 +16,10 @@ class smartWindow
     void getDistance();
     void moveFoward();
     void moveBackward();
+    void getInputControlHub();
     double distanceValue;
     bool thiefDetected;
+
 	
 
     
