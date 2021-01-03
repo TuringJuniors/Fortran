@@ -40,3 +40,12 @@ void smartWindow :: moveBackward(){
     std::cout << "motor_move_backward" << std::endl;
     
 }
+
+void smartWindow :: getInputControlHub() {
+    int input;
+    std::cin >> input;
+    if(input==1)
+    {
+        thiefDetected = true;
+    }
+}
