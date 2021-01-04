@@ -20,6 +20,9 @@ class smartLamp
     
     smartLamp(controlHub* newController);
     
+    void getInputControlHub();
+    
+    int state;
     
     private:
     
