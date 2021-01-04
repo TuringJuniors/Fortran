@@ -23,13 +23,15 @@ void smartHeater::getInputApp()
 	else if (Input == 1)  //code-1 -> to set idle temperature
 	{
 		double temp;
-		cin >> temp;
+		cout << "idle temperature value :";
+		cin >> temp ;
 		setIdleTemperature(temp); 
 
 	}
 	else if (Input == 2) //code-2 -> to set sleep temperature
 	{
 		double temp;
+		cout << "sleep temperature value :";
 		cin >> temp;
 		setSleepTemperature(temp);
 	}
