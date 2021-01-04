@@ -15,7 +15,6 @@ int main()
 
 
 
-
 	switch (alarm1.state) {
 	case idleMode:
 		while (alarm1.state == idleMode) {
@@ -26,23 +25,15 @@ int main()
 	case thiefMode:
 		while (alarm1.state == thiefMode) {
 			alarm1.getInputControlHub();
-
-			while (window1.distanceValue!= 0)
-			{
-				window1.getDistance();
-				window1.moveFoward();
-			}
+			alarm1.ring()
+		
 			break;
 		}
 	case smokeMode:
 		while (alarm1.state == smokeMode) {
-			window1.getInputControlHub();
-
-			while(window1.distanceValue!=window1.maxDistance)
-			{
-				window1.getDistance();
-				window1.moveBackward();
-			}
+			alarm1.getInputControlHub();
+			alarm1.ring()
+		
 			break;
 		}
 	}
