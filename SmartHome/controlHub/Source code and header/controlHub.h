@@ -7,14 +7,27 @@ public:
 
 
 	//to communicate with smart heater
-	void HeatersetIdleTemperature(double temp);
-	void HeatersetSleepTemperature(double temp);
 	void Heateron();
-	void Heateroff();
-	void HeatersleepMode();
-	void HeateridleMode(void);
-	void HeaterecoMode();
+
+	//to communicate with application
+	void Applicationnotify(int code);
+	bool ApplicationwaitUserResponse();
+	void ApplicationemergencyCall();
+
+	//to communicate with smart door
+	void Doorunlock();
+	bool DoorcheckFirstPerson();
+
+	//to communicate with smart Alarm
+	void Alarmring();
+
+	//to communicate with smart lamp
+	void Lampblink();
+	void Lampon();
+
+	//to communicate with smart window
+	void Windowclose();
+	
+
 };
-
-
 #endif
