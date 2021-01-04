@@ -2,31 +2,61 @@
 #include "controlHub.h"
 using namespace std;
 
-void controlHub::HeatersetIdleTemperature(double temp)
-{
-    cout << "set idle temperature to " << temp << endl; // send code and value to heater to set idle temperature
-}
-void controlHub::HeatersetSleepTemperature(double temp)
-{
-    cout << "set sleep temperature to " << temp << endl; // send code and value to heater to set sleep temperature
-}
+
+
+
+//to communicate with smart heater
 void controlHub::Heateron()
 {
     cout << "set heater to " << "on" << endl;   // send code to heater to turn on the heater
 }
-void controlHub::Heateroff()
+
+//to communicate with application
+void controlHub::Applicationnotify(int code)
 {
-    cout << "set heater to " << "off" << endl; // send code to heater to turn on the heater
+    cout << "thief detected" ; //output to application
 }
-void controlHub::HeatersleepMode()
+bool controlHub::ApplicationwaitUserResponse()
 {
-    cout << "heater mode chang to" << "sleep mode" << endl; // send code to heater to change state to sleep state
+    int response;
+    cin >> response;   //input from application(by user)
+    return response;
 }
-void controlHub::HeateridleMode(void)
+void controlHub::ApplicationemergencyCall()
 {
-    cout << "heater mode chang to" << "idle mode" << endl; // send code to heater to change state to idle state
+    cout << "emergency call"; // output tu application
 }
-void controlHub::HeaterecoMode()
+
+//to communicate with smart door
+void controlHub::Doorunlock()
 {
-    cout << "heater mode chang to" << "eco mode" << endl; // send code to heater to change state to eco state
+    cout << "door lock"; //to lock door(output to door)
+}
+bool controlHub::DoorcheckFirstPerson()
+{
+    bool result;
+    cin >> result; //input from door to check either the person that come in is the first person
+    return result;
+}
+
+//to communicate with smart Alarm
+void controlHub::Alarmring() 
+{
+    cout << "ring alarm";// to ring the alarm(output to smart alarm)
+}
+
+//to communicate with smart lamp
+void controlHub::Lampblink()
+{
+    cout << "blink lamp";// to blink the lamp(output to smart lamp)
+}
+void controlHub::Lampon()
+{
+    cout << "lamp on";// to on the lamp(output to smart lamp)
+}
+
+//to communicate with smart window
+void controlHub::Windowclose()
+{
+    cout << "rwindow close";// to close the lamp(output to smart window)
 }
