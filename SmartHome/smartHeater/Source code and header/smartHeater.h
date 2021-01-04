@@ -22,7 +22,7 @@ public:
 	double runningTemperature = 0;      //temperature need to be mantained
 	double idleTemperature = 0;         //default temperature set by owner
 	double sleepTemperature = 0;        //temperature on sleep mode is on 
-	double ecoTemperature = 20.0;   // room temperature. used to reduce energy conservation
+	const double ecoTemperature = 20.0;   // room temperature. used to reduce energy conservation
 
 	void on();
 	void off();
