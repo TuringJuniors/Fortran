@@ -1,7 +1,8 @@
 #include<iostream>
 #include "smartHeater.h"
-#include "controlHub.h"
 #include <pthread.h>
+
+
 
 #define NUM_THREADS 2 
 #define IDLE_STATE 0
