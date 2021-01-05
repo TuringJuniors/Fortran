@@ -1,7 +1,7 @@
 #include <iostream>
 #include "smartHeater.h"
 
-
+using namespace std;
 
 void validationTestRun();
 void METHOD1();
@@ -20,19 +20,18 @@ void METHOD12();
 void EVENT1();
 
 //function  to validate
-int doubleAreEqual(double a , double b)
+int doubleAreEqual(double a, double b)
 {
 	return a == b ? 1 : 0;
 }
 
-double testInput[] = {12.3,900.444,-6.67,2000,-4000.32};
+double testInput[] = { 12.3,900.444,-6.67,2000,-4000.32 };
 double testOutput[] = { 12.3,900.444,-6.67,2000,-4000.32 };
 int controllerInput[] = { 0,1,2,3,4,5 };  //input from app and hub
 
 
 
 // creat object for test purpose
-class controlHub{};
 controlHub controller1;
 smartHeater heater1(&controller1);
 
@@ -62,13 +61,13 @@ void validationTestRun()
 
 void METHOD1()   //detectTemperature()
 {
-	int errorCounter=0;
+	int errorCounter = 0;
 	cout << "test  for METHOD1-->detectTemperature()" << endl;
-	for (int i=0; i < 5; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		cout<< "please type "<< testInput[i] << ": ";
+		cout << "please type " << testInput[i] << ": ";
 		heater1.detectTemperature();
-		if (doubleAreEqual(heater1.currentTemperature, testOutput[i])!=1)
+		if (doubleAreEqual(heater1.currentTemperature, testOutput[i]) != 1)
 		{
 			errorCounter++;
 		}
@@ -83,7 +82,7 @@ void METHOD1()   //detectTemperature()
 		cout << "METHOD1 success\n" << endl;
 	}
 
-} 
+}
 
 void METHOD2() //setIdleTemperature(double temp)
 {
@@ -323,9 +322,9 @@ void METHOD11() //getInputHub()
 	int errorCounter = 0;
 	cout << "test  for METHOD11-->getInputHub()" << endl;
 
-	for (int i = 0; i <3; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		
+
 		heater1.state = testInput[i];
 		heater1.currentTemperature = testInput[i];
 		heater1.runningTemperature = testInput[i];
@@ -333,17 +332,17 @@ void METHOD11() //getInputHub()
 		heater1.sleepTemperature = testInput[i];
 		heater1.heating = false;
 
-		cout << "please type "<<controllerInput[i]<<" : ";
+		cout << "please type " << controllerInput[i] << " : ";
 		heater1.getInputHub();
 
 		//check for any changes to the artibute
 		if (controllerInput[i] == 0)
 		{
-			if (doubleAreEqual(heater1.runningTemperature, testOutput[i])!= 1){errorCounter++;}
+			if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.idleTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.heating, false) != 1){errorCounter++;}
+			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.state, (int)testOutput[i]) != 1) { errorCounter++; }
 		}
 		else if (controllerInput[i] == 1)
@@ -364,7 +363,7 @@ void METHOD11() //getInputHub()
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.state, 2) != 1) { errorCounter++; }
 		}
-		
+
 	}
 
 	if (errorCounter)
@@ -408,7 +407,7 @@ void METHOD12() //getInputApp()
 		}
 		else if (controllerInput[i] == 1) //code-1 -> to set idle temperature
 		{
-			
+
 			if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.idleTemperature, 255.999) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
@@ -432,7 +431,7 @@ void METHOD12() //getInputApp()
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.state,0) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.state, 0) != 1) { errorCounter++; }
 		}
 		else if (controllerInput[i] == 4)
 		{
@@ -441,7 +440,7 @@ void METHOD12() //getInputApp()
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.state,1) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.state, 1) != 1) { errorCounter++; }
 		}
 
 
@@ -489,7 +488,7 @@ void EVENT1()
 			heater1.off();
 			break;
 		}
-		cout << "please type any value for current temperature: ";
+		cout << "\nplease type any value for current temperature: ";
 		heater1.detectTemperature();
 		if (heater1.currentTemperature <= heater1.runningTemperature)
 		{
@@ -501,14 +500,26 @@ void EVENT1()
 		}
 
 		//check for any change in each state
-		if (heater1.state == 0 && heater1.runningTemperature== heater1.idleTemperature)
+		if (heater1.state == 0 && heater1.runningTemperature == heater1.idleTemperature)
 		{
+			cout << "\nentering idle mode "<< endl;
+			cout << "current temperature : " << heater1.currentTemperature << endl;
+			cout << "idle temperature : " << heater1.idleTemperature << endl;
+			cout << "running temperature : " << heater1.runningTemperature << endl;
+			cout << "Heating status : " << heater1.heating << endl;
 		}
-		else if (heater1.state == 1 && heater1.runningTemperature==heater1.sleepTemperature)
+		else if (heater1.state == 1 && heater1.runningTemperature == heater1.sleepTemperature)
 		{
+			cout << "\nentering sleep mode " << endl;
+			cout << "current temperature : " << heater1.currentTemperature << endl;
+			cout << "sleep temperature : " << heater1.sleepTemperature << endl;
+			cout << "running temperature : " << heater1.runningTemperature << endl;
+			cout << "Heating status : " << heater1.heating << endl;
 		}
-		else if (heater1.state == 2 && heater1.heating==false)
+		else if (heater1.state == 2 && heater1.heating == false)
 		{
+			cout << "entering off mode " << endl;
+			cout << "Heating status : " << heater1.heating << endl;
 		}
 		else
 		{
@@ -524,5 +535,5 @@ void EVENT1()
 	{
 		cout << "EVENT1 success\n" << endl;
 	}
-	
+
 }
