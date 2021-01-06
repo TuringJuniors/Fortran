@@ -184,7 +184,7 @@ void setup()
 void loop()
 {
     controlHub controller1;
-    //controller1.DoorcheckThief();
+    controller1.DoorcheckThief();
     bool response=false;
 
     switch (state)
