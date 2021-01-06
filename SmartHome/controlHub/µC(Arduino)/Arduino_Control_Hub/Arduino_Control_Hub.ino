@@ -50,28 +50,29 @@ void controlHub::Heateron()
     output[0] = SMART_HEATER_ADDRESS; //heater address
     output[1] = 6; //code to turn on the heater
     value = 0;//no value needed
-  Serial.println(output[1],DEC);//**************************
-  Serial.println(output[2]);
     wireCommunicationOuput();
-  
-  
 }
 
 //to communicate with application
 void controlHub::Applicationnotify(int code)
 {
-    Serial.write(code); // code to notify the user
+    if(code==1); // code to notify the user
+  {
+    Serial.println(" Thief detected ");  //print on application using UART protocol
+  }
 }
 bool controlHub::ApplicationwaitUserResponse()
 {
     bool response = false;
-    response = (bool)Serial.read();   //input from application(by user)
+    Serial.println("\n thief? (no-> 1, yes-> 0) : "); //print on application using UART protocol
+    while(!Serial.available()){}
+    response = (bool)Serial.parseInt();   //input from application(by user) using UART protocol
     delayMicroseconds(10);
     return response;
 }
 void controlHub::ApplicationemergencyCall()
 {
-    Serial.write(0); // code for emergency call by application
+    Serial.println("\n creating emergency call "); //print on application using UART protocol
 }
 
 //to communicate with smart door
@@ -170,7 +171,7 @@ int wireCommunicationInput()
   Wire.requestFrom(output[0],1);
   if(Wire.available())
   {
-    value=Wire.read();
+    value=Wire.parseInt();
   }
 }
 
@@ -180,9 +181,9 @@ void setup()
     Serial.begin(9600);
 }
 
-
 void loop()
 {
+    
     controlHub controller1;
     controller1.DoorcheckThief();
     bool response=false;
@@ -195,6 +196,7 @@ void loop()
         if (response == true)
         {
             controller1.Doorunlock();
+            state=MEMBER_ENTERING;
             break;
         }
         else if (response == false)
