@@ -158,6 +158,7 @@ void input(int howMany)
         heater1.state = 2; //turn off the heater
     }
 
+
 }
 void output()
 {
@@ -172,7 +173,6 @@ void loop()
         switch (heater1.state)
         {
         case IDLE_STATE:
-          //pinMode(6,HIGH);
           //Serial.print("idle state");
            heater1.idleMode();
             break;
