@@ -1,0 +1,9 @@
+link : https://www.tinkercad.com/things/ltE5AGzONDA-smartheater/editel?sharecode=lRklcNyowxDeXDtA5C7_dl_Ri5q3iRfLzmGKEMLpjAY
+only available until 20/01/2021
+
+
+
+for test purpose:
+
+the current temperature is set to 10 instead of using the value from temperature sensor
+the contro hub state are set to "thief detected" state instead request input from door
