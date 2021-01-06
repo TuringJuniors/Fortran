@@ -14,11 +14,11 @@
 int inputDevice = 0;
 int inputAction = 0;
 int output[2];
-double value;
+int value;
 bool response;
 
-void controlHubAction();
-void smartHeaterAction();
+void controlHubAction(); //list of control hub action(list of function)
+void smartHeaterAction();//list of smart heater action(list of function)
 
 class application
 {
@@ -50,13 +50,9 @@ void application::notify(bool thiefDetected)
 bool application::waitUserResponse()
 {
     Serial.println("is this your member?\n");
-    
-    if (Serial.available() > 0)
-    {
-        response = Serial.read();
-        response -= '0';
-    }
-
+    while(!Serial.available()){}
+    response = '0'-Serial.read();
+   
     return response;
 }
 void application::emergencyCall()
@@ -71,7 +67,7 @@ void wireCommunicationOuput()
     int address = output[0];
     Wire.beginTransmission(address);
     Wire.write(output[1]);
-    Wire.write((int)value);
+    Wire.write(value);
     Wire.endTransmission();
 }
 int wireCommunicationInput()
@@ -81,10 +77,9 @@ int wireCommunicationInput()
     Wire.endTransmission();
     delay(10);
     Wire.requestFrom(output[0], 1);
-    if (Wire.available())
-    {
-        value = Wire.read();
-    }
+    while(!Serial.available() ){
+  }
+    value = Serial.parseInt();
 }
 
 void application::HeatersetIdleTemperature()
@@ -92,11 +87,9 @@ void application::HeatersetIdleTemperature()
     output[0] = SMART_HEATER_ADDRESS;
     output[1] = 1;//code to set idle temperature in heater
     Serial.println("Value for idle temperature :");
-    if (Serial.available() > 0)
-    {
-        value = Serial.read();
-        value -= '0';
-    }
+    while(!Serial.available() ){
+  }
+    value = Serial.parseInt();
     wireCommunicationOuput();
 
 }
@@ -105,13 +98,10 @@ void application::HeatersetSleepTemperature()
     output[0] = SMART_HEATER_ADDRESS;
     output[1] = 2;//code to set sleep temperature in heater
     Serial.println("Value for sleep temperature :");
-    if (Serial.available() > 0)
-    {
-        value = Serial.read();
-        value -= '0';
-    }
-    
-
+  
+    while(!Serial.available() ){
+  }
+    value = Serial.parseInt();
     wireCommunicationOuput();
 }
 void application::Heateron()
@@ -170,15 +160,10 @@ void smartHeaterAction()
     Serial.println("eco mode 7");
 
     Serial.println("");
-    Serial.print("action :");
-    delay(1000);
-    if (Serial.available() > 0)
-    {
-        inputAction = Serial.read();
-        inputAction -= '0';
-    }
-
-  
+    Serial.print("action :\n");
+    while(!Serial.available() ){
+  }
+    inputAction = Serial.parseInt();
 
     switch (inputAction)
     {
@@ -223,15 +208,10 @@ void loop()
     Serial.println("smart heater 1");
     Serial.println("");
     Serial.print("communicate with :");
-    while (Serial.available() > 0)
-    {
-      
-        inputDevice = Serial.read();
-        inputDevice -= '0';
-    }
-  delay(1000);
-
-
+    while(!Serial.available() ){
+  }
+    inputDevice = Serial.parseInt();
+    
     switch (inputDevice)
     {
     case CONTROL_HUB:
