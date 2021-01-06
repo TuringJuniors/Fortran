@@ -10,7 +10,7 @@ using namespace std;
 #define heaterPin 6
 
 
-int inputCode;  //where the code should be store
+short int inputCode;  //where the code should be store
 int inputValue;  //store any value from application and control hub
 
 class controlHub {};
@@ -113,12 +113,12 @@ void setup()
 //void* UPDATE(void* threadid)  replaced as interupt
 void input(int howMany)
 {
-  Serial.print("receive input");
+  Serial.print("\nreceive input : ");
     if (Wire.available())
     {
         inputCode = Wire.read();
     }
-    if (Wire.available())
+    while (Wire.available())
     {
         inputValue = Wire.read();
     }
@@ -131,18 +131,36 @@ void input(int howMany)
     else if (inputCode == 1)  //code-1 -> to set idle temperature
     {
         heater1.setIdleTemperature(inputValue);
+        //***************test purpose**************//
+        //Serial.print("idle temperature set to ");
+        //Serial.print(heater1.idleTemperature);
+        //Serial.println("");
     }
     else if (inputCode == 2) //code-2 -> to set sleep temperature
     {
         heater1.setSleepTemperature(inputValue);
+        //***************test purpose**************//
+        //Serial.print("sleep temperature set to ");
+        //Serial.print(heater1.sleepTemperature);
+        //Serial.println("");
+        //Serial.print(heater1.runningTemperature);
+        //Serial.println("");
     }
     else if (inputCode == 3) //code-3 -> to change the state to idle state
     {
         heater1.state = 0;//idle state
+        //***************test purpose**************//
+        //Serial.print("heater state change to  ");
+        //Serial.print(heater1.state);
+        //Serial.println("");
     }
     else if (inputCode == 4) //code-4 -> to change the state to sleep state
     {
         heater1.state = 1;//sleep state
+        //***************test purpose**************//
+        //Serial.print("heater state change to  ");
+        //Serial.print(heater1.state);
+        //Serial.println("");
     }
 
     //void smartHeater::getInputHub()
@@ -152,10 +170,18 @@ void input(int howMany)
     else if (inputCode == 6)  //code-1 -> on the smartHeater
     {
         heater1.state = 0; //start the smart heater in idle state
+        //***************test purpose**************//
+        //Serial.print("heater state change to  ");
+        //Serial.print(heater1.state);
+        //Serial.println("");
     }
     else if (inputCode == 7)  //code-1 -> on the smartHeater
     {
         heater1.state = 2; //turn off the heater
+        //***************test purpose**************//
+        //Serial.print("heater state change to  ");
+        //Serial.print(heater1.state);
+        //Serial.println("");
     }
 
 
@@ -173,14 +199,18 @@ void loop()
         switch (heater1.state)
         {
         case IDLE_STATE:
+          //pinMode(6,HIGH);
+          //***************test purpose**************//
           //Serial.print("idle state");
            heater1.idleMode();
             break;
         case SLEEP_STATE:
+          //***************test purpose**************//
           //Serial.print("sleep state");
             heater1.sleepMode();
             break;
         case OFF_STATE:
+          //***************test purpose**************//
           //Serial.print("off state");
             heater1.off();
             break;
