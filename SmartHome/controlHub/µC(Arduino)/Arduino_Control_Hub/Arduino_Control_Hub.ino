@@ -1,13 +1,6 @@
 #include <Wire.h>
 
-#define MEMBER_ENTERING 1
-#define THIEF_DETECTED 0
-#define IDLE_STATE 2
-
-#define APPLICATION_ADDRESS 3
-#define SMART_HEATER_ADDRESS 4
-#define SMART_DOOR_ADDRESS 5
-#define SMART_ALARM_ADDRESS 6
+#define MEMBER_ENTERING 1ALARM_ADDRESS 6
 #define SMART_LAMP_ADDRESS 4
 #define SMART_WINDOW_ADDRESS 4
 
@@ -33,7 +26,14 @@ public:
     void Doorunlock();
     bool DoorcheckFirstPerson();
     bool DoorcheckThief();
-    //to communicate with smart Alarm
+    //to communicate wit
+#define THIEF_DETECTED 0
+#define IDLE_STATE 2
+
+#define APPLICATION_ADDRESS 3
+#define SMART_HEATER_ADDRESS 4
+#define SMART_DOOR_ADDRESS 5
+#define SMART_h smart Alarm
     void Alarmring();
     //to communicate with smart lamp
     void Lampblink();
