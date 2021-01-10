@@ -10,7 +10,6 @@ class smartLamp
 {
     public:
     
-    bool thiefDetected;
     
     void blink();
     
