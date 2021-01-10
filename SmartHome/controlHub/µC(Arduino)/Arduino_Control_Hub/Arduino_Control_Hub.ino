@@ -144,11 +144,37 @@ void controlHub::Lampon()
     wireCommunicationOuput();
 }
 
+
 //to communicate with smart window
 void controlHub::Windowclose()
 {
     output[0] = SMART_WINDOW_ADDRESS;//windows address
-    output[1] = 0;// to close the lamp(output to smart window)
+    output[1] = 6;// to close the lamp(output to smart window)
+    value = 0;
+    wireCommunicationOuput();
+}
+
+
+void controlHub::Windowopen()
+{
+    output[0] = SMART_WINDOW_ADDRESS;//windows address
+    output[1] = 7;// to open the lamp(output to smart window)
+    value = 0;
+    wireCommunicationOuput();
+}
+
+void controlHub::thiefDetected()
+{
+  output[0] = SMART_WINDOW_ADDRESS;//windows address
+    output[1] = 4;// thief detected(output to smart window)
+    value = 0;
+    wireCommunicationOuput();
+}
+
+void controlHub::smokeDetected()
+{
+  output[0] = SMART_WINDOW_ADDRESS;//windows address
+    output[1] = 5;// smoke detcted (output to smart window)
     value = 0;
     wireCommunicationOuput();
 }
