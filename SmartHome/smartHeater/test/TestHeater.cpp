@@ -55,7 +55,6 @@ void validationTestRun()
 	METHOD10();
 	METHOD11();
 	METHOD12();
-
 	EVENT1();
 }
 
@@ -65,11 +64,11 @@ void METHOD1()   //detectTemperature()
 	cout << "test  for METHOD1-->detectTemperature()" << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		cout << "please type " << testInput[i] << ": ";
-		heater1.detectTemperature();
-		if (doubleAreEqual(heater1.currentTemperature, testOutput[i]) != 1)
+		cout << "please type " << testInput[i] << ": "; //input sould be from temperature sensor but replace by input from keyboard
+		heater1.detectTemperature();   //this function should change the value of current temperature 
+		if (doubleAreEqual(heater1.currentTemperature, testOutput[i]) != 1) // compare the current temperature with predicted value
 		{
-			errorCounter++;
+			errorCounter++;  //if the values are not same, the error value will be increased
 		}
 	}
 
@@ -90,11 +89,12 @@ void METHOD2() //setIdleTemperature(double temp)
 	cout << "test  for METHOD2-->setIdleTemperature(double temp)" << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		heater1.setIdleTemperature(testInput[i]);
+		heater1.setIdleTemperature(testInput[i]); //this function should change the value of idle temperature to the value of testInput[i]
 
-		if (doubleAreEqual(heater1.idleTemperature, testOutput[i]) != 1)
+
+		if (doubleAreEqual(heater1.idleTemperature, testOutput[i]) != 1)// compare the idle temperature with predicted value
 		{
-			errorCounter++;
+			errorCounter++; 
 		}
 	}
 
@@ -115,9 +115,9 @@ void METHOD3() //setSleepTemperature(double temp);
 	cout << "test  for METHOD3-->setSleepTemperature(double temp)" << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		heater1.setSleepTemperature(testInput[i]);
+		heater1.setSleepTemperature(testInput[i]);//this function should change the value of sleep temperature to the value of testInput[i]
 
-		if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1)
+		if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1)// compare the sleep temperature with predicted value
 		{
 			errorCounter++;
 		}
@@ -140,9 +140,9 @@ void METHOD4() //on();
 	cout << "test  for METHOD4-->on()" << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		heater1.state = testInput[i];
-		heater1.on();
-		if (doubleAreEqual(heater1.state, 0) != 1)
+		heater1.state = testInput[i];//change the state value to test value
+		heater1.on();//this fuction should change the state value to 0 (ideal state)
+		if (doubleAreEqual(heater1.state, 0) != 1)//the value of state should be always 0 when  on() is called
 		{
 			errorCounter++;
 		}
@@ -165,10 +165,10 @@ void METHOD5() //off()
 	cout << "test  for METHOD5-->off()" << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		heater1.runningTemperature = testInput[i];
-		heater1.off();
+		heater1.runningTemperature = testInput[i];//change the running temperature with test value
+		heater1.off();// this function should change the running temperatue to -100
 
-		if (doubleAreEqual(heater1.runningTemperature, -100) != 1)
+		if (doubleAreEqual(heater1.runningTemperature, -100) != 1)//running temperature should be always -100 when off() is called
 		{
 			errorCounter++;
 		}
@@ -193,9 +193,8 @@ void METHOD6() //startHeating()
 	{
 		heater1.heating = testInput[i];
 		heater1.startHeating();
-		heater1.off();
 
-		if (doubleAreEqual(heater1.heating, 1) != 1)
+		if (doubleAreEqual(heater1.heating, 1) != 1)// heating should be true after startHeating() is called
 		{
 			errorCounter++;
 		}
@@ -220,9 +219,8 @@ void METHOD7() //stopHeating()
 	{
 		heater1.heating = testInput[i];
 		heater1.stopHeating();
-		heater1.off();
 
-		if (doubleAreEqual(heater1.heating, 0) != 1)
+		if (doubleAreEqual(heater1.heating, 0) != 1)// heating should be false after startHeating() is called
 		{
 			errorCounter++;
 		}
@@ -248,7 +246,7 @@ void METHOD8() //sleepMode()
 		heater1.sleepTemperature = testInput[i];
 		heater1.sleepMode();
 
-		if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1)
+		if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1)//running temperature should be equal to sleep temperature when sleepMode() is called
 		{
 			errorCounter++;
 		}
@@ -274,7 +272,7 @@ void METHOD9() //idleMode()
 		heater1.idleTemperature = testInput[i];
 		heater1.idleMode();
 
-		if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1)
+		if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1)//running temperature should be equal to idle temperature when idleMode() is called
 		{
 			errorCounter++;
 		}
@@ -300,7 +298,7 @@ void METHOD10() //ecoMode()
 		heater1.runningTemperature = testInput[i];
 		heater1.ecoMode();
 
-		if (doubleAreEqual(heater1.runningTemperature, 20) != 1)
+		if (doubleAreEqual(heater1.runningTemperature, 20) != 1)//running temperature should be equal to eco temperature when ecoMode() is called
 		{
 			errorCounter++;
 		}
@@ -336,7 +334,7 @@ void METHOD11() //getInputHub()
 		heater1.getInputHub();
 
 		//check for any changes to the artibute
-		if (controllerInput[i] == 0)
+		if (controllerInput[i] == 0)//nothing would be changed
 		{
 			if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.idleTemperature, testOutput[i]) != 1) { errorCounter++; }
@@ -352,7 +350,7 @@ void METHOD11() //getInputHub()
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.state, 0) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.state, 0) != 1) { errorCounter++; }// only state will be changed to 0
 		}
 		else if (controllerInput[i] == 2)
 		{
@@ -361,7 +359,7 @@ void METHOD11() //getInputHub()
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.state, 2) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.state, 2) != 1) { errorCounter++; }// only state will be changed to 0
 		}
 
 	}
@@ -396,7 +394,7 @@ void METHOD12() //getInputApp()
 		heater1.getInputApp();
 
 		//check for any changes to the artibute
-		if (controllerInput[i] == 0)
+		if (controllerInput[i] == 0)//nothing would be changed
 		{
 			if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.idleTemperature, testOutput[i]) != 1) { errorCounter++; }
@@ -409,7 +407,7 @@ void METHOD12() //getInputApp()
 		{
 
 			if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.idleTemperature, 255.999) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.idleTemperature, 255.999) != 1) { errorCounter++; }// only idle temperature will be changed(to 255.999)
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
@@ -419,7 +417,7 @@ void METHOD12() //getInputApp()
 		{
 			if (doubleAreEqual(heater1.runningTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.idleTemperature, testOutput[i]) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.sleepTemperature, 255.999) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.sleepTemperature, 255.999) != 1) { errorCounter++; }// only sleep temperature will be changed(to 255.999)
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.state, (int)testOutput[i]) != 1) { errorCounter++; }
@@ -431,7 +429,7 @@ void METHOD12() //getInputApp()
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.state, 0) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.state, 0) != 1) { errorCounter++; }// only state will be changed to 0
 		}
 		else if (controllerInput[i] == 4)
 		{
@@ -440,7 +438,7 @@ void METHOD12() //getInputApp()
 			if (doubleAreEqual(heater1.sleepTemperature, testOutput[i]) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.ecoTemperature, 20) != 1) { errorCounter++; }
 			if (doubleAreEqual(heater1.heating, false) != 1) { errorCounter++; }
-			if (doubleAreEqual(heater1.state, 1) != 1) { errorCounter++; }
+			if (doubleAreEqual(heater1.state, 1) != 1) { errorCounter++; }// only state will be changed to 1
 		}
 
 
