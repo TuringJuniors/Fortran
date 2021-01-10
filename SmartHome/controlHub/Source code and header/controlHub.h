@@ -27,6 +27,9 @@ public:
 
 	//to communicate with smart window
 	void Windowclose();
+	void Windowopen();
+	void smokeDetected();
+	void thiefDetected();
 	
 
 };
