@@ -2,7 +2,7 @@
 #include <iostream>
 
 void smartLamp :: blink(){
-    while(1){
+    for(int x=0,x<=50,x++){
     	on();
     	off();
 	}
