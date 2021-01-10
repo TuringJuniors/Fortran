@@ -3,8 +3,10 @@
 using namespace std;
 
 void smartWindow::open() {
+    getDistance();
     while (distanceValue!= maxDistance)
     {
+        getDistance();
         moveBackward();
     }
 
@@ -16,8 +18,10 @@ smartWindow::smartWindow(controlHub* newController) {
 }
 
 void smartWindow::close() {
+    getDistance();
     while (distanceValue != 0)
     {
+        getDistance();
         moveForward();
     }
 
