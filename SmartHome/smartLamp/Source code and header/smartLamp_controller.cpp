@@ -32,7 +32,7 @@ int main(){
 		case BLINK:
 			while(lamp1.state==BLINK){
 				lamp1.getInputControlHub();
-				blink();
+				lamp1.blink();
 				break;
 			}
 	}
