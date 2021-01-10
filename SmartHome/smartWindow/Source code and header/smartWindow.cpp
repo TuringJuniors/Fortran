@@ -1,8 +1,9 @@
 #include "smartWindow.h"
 #include <iostream>
+using namespace std;
 
 void smartWindow::open() {
-    while (distanceValue == 0)
+    while (distanceValue!= maxDistance)
     {
         moveBackward();
     }
@@ -17,54 +18,54 @@ smartWindow::smartWindow(controlHub* newController) {
 void smartWindow::close() {
     while (distanceValue != 0)
     {
-        moveFoward();
+        moveForward();
     }
 
 }
 
-void smartWindow::ecoMode() {
-
-}
 
 void smartWindow::getDistance() {
-    std::cin >> distanceValue;
+    cin >> distanceValue;
+    
 
 }
 
-void smartWindow::moveFoward() {
-    std::cout << "motor_move_foward" << std::endl;
+void smartWindow::moveForward() {
+    cout << "motor_move_foward" << std::endl;
 
 }
 
 void smartWindow::moveBackward() {
-    std::cout << "motor_move_backward" << std::endl;
+    cout << "motor_move_backward" << std::endl;
 
 }
 
 void smartWindow::getInputControlHub() {
     int input;
-    std::cin >> input;
+    cin >> input;
     if (input == 1)
     {
         thiefDetected = true;
     }
-    else if (input == 2)
+    if (input == 2)
     {
         smokeDetected = true;
     }
-    else if (input == 3)
+     if (input == 3)
     {
+        
         state = 0; //idlestate
     }
 
-    if(thiefDetected==true)
+    if (input == 4)
     {
-        state = 1;
+      
+        state = 1;//thiefDetected
     }
 
-    else if (smokeDetected == true)
+    else if (input == 5)
     {
-        state = 2;
+        state = 2;//smokeDetected
     }
 
 }
