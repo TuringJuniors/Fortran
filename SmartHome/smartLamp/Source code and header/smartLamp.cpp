@@ -18,7 +18,7 @@ void smartLamp :: off(){
 	cout<<"lampOff";
 } 
 
-void getInputControlHub()
+void smartLamp::getInputControlHub()
 {
     int input;
     cin >> input; //from control hub
