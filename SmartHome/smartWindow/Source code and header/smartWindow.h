@@ -17,10 +17,10 @@ public:
     void moveFoward();
     void moveBackward();
     void getInputControlHub();
-    double distanceValue;
-    bool thiefDetected;
-    bool smokeDetected;
-    int state;
+    double distanceValue =0;
+    bool thiefDetected =0;
+    bool smokeDetected =0;
+    int state =0;
     int maxDistance = 500;
 
 
