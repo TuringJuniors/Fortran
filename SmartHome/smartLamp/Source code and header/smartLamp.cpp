@@ -1,19 +1,21 @@
-#include "smartLamp.h"
 #include <iostream>
+#include "smartLamp.h"
+
+using namespace std;
 
 void smartLamp :: blink(){
-    for(int x=0,x<=50,x++){
+    for(int x=0;x<=50;x++){
     	on();
     	off();
 	}
 }
 
 void smartLamp :: on(){
-    cout<<lampOn;
+    cout<<"lampOn";
 }
 
 void smartLamp :: off(){
-	cout<<lampOff;
+	cout<<"lampOff";
 } 
 
 void getInputHub()
