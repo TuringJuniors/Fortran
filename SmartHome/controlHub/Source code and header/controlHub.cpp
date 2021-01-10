@@ -58,5 +58,22 @@ void controlHub::Lampon()
 //to communicate with smart window
 void controlHub::Windowclose()
 {
-    cout << "rwindow close";// to close the lamp(output to smart window)
+    cout << "window close";// to close the window(code :6)
 }
+
+//to communicate with smart window
+void controlHub::Windowopen()
+{
+    cout << "window open";// to open the window(code :7)
+}
+
+void controlHub::thiefDetected()
+{
+    cout << "window thief Detected" << endl; // (code :4)
+}
+
+void controlHub::smokeDetected()
+{
+    cout << "window smoke Detected" << endl; // (code :5)
+}
+
