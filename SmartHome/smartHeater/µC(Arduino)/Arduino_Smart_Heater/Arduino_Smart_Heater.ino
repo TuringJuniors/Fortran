@@ -54,8 +54,13 @@ smartHeater::smartHeater(controlHub* newController)
 }
 double smartHeater::detectTemperature()
 {
-    currentTemperature = digitalRead(temperatureSensorPin);     // get input from temperature sensor
-    //here is the space for translating the input to temperature value
+    int sensorValue = digitalRead(temperatureSensorPin);     // get input from temperature sensor
+    //translating the input to temperature value
+      sensorValue = analogRead(A0);    //read the analog sensor and store it
+  currentTemperature = (double)sensorValue / 1024;       //find percentage of input reading
+  currentTemperature = currentTemperature * 5;                 //multiply by 5V to get voltage
+  currentTemperature = currentTemperature - 0.5;               //Subtract the offset 
+  currentTemperature = currentTemperature * 100;               //Convert to degrees 
     return currentTemperature;
 }
 
