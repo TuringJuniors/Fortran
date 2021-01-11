@@ -8,7 +8,7 @@
 #define SMART_HEATER_ADDRESS 4
 #define SMART_DOOR_ADDRESS 5
 #define SMART_ALARM_ADDRESS 6
-#define SMART_LAMP_ADDRESS 4
+#define SMART_LAMP_ADDRESS 1
 #define SMART_WINDOW_ADDRESS 4
 
 int output[2]; //{adress,code,value //i2c
@@ -132,14 +132,14 @@ void controlHub::Alarmring()
 void controlHub::Lampblink()
 {
     output[0] = SMART_LAMP_ADDRESS;//lamp address 
-    output[1] = 0;// to blink the lamp(output to smart lamp)
+    output[1] = 3;// to blink the lamp(output to smart lamp)
     value = 0;
     wireCommunicationOuput();
 }
 void controlHub::Lampon()
 {
     output[0] = SMART_LAMP_ADDRESS;//lamp address
-    output[1] = 0;// to on the lamp(output to smart lamp)
+    output[1] = 1;// to on the lamp(output to smart lamp)
     value = 0;
     wireCommunicationOuput();
 }
