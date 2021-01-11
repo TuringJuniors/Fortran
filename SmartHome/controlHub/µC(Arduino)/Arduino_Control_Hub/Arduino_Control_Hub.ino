@@ -9,7 +9,9 @@
 #define SMART_DOOR_ADDRESS 5
 #define SMART_ALARM_ADDRESS 6
 #define SMART_LAMP_ADDRESS 1
-#define SMART_WINDOW_ADDRESS 4
+#define SMART_WINDOW_ADDRESS 2
+
+
 
 int output[2]; //{adress,code,value //i2c
 double value;
