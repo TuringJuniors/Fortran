@@ -1,0 +1,6 @@
+
+address 1  smart lamp
+address 2  smart window
+address 3  smart alarm
+address 4  smart heater
+address 5  smart door
