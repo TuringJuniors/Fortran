@@ -5,5 +5,4 @@ only available until 20/01/2021
 
 for test purpose:
 
-the current temperature is set to 10 instead of using the value from temperature sensor
 the contro hub state are set to "thief detected" state instead request input from door
