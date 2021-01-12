@@ -1,7 +1,5 @@
 #include <Wire.h> //communication using i2c protocol
-using namespace std;
 
-#define NUM_THREADS 2 
 #define IDLE_STATE 0
 #define SLEEP_STATE 1
 #define OFF_STATE 2
