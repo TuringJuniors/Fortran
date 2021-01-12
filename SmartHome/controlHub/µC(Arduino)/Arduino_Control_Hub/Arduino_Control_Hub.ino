@@ -42,6 +42,10 @@ public:
     void Lampon();
     //to communicate with smart window
     void Windowclose();
+    void smokeDetected();
+    void thiefDetected();
+    void Windowopen();
+    
 
 
 };
