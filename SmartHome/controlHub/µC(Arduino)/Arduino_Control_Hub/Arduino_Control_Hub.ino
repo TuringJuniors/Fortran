@@ -7,7 +7,7 @@
 #define APPLICATION_ADDRESS 3
 #define SMART_HEATER_ADDRESS 4
 #define SMART_DOOR_ADDRESS 5
-#define SMART_ALARM_ADDRESS 6
+#define SMART_ALARM_ADDRESS 3
 #define SMART_LAMP_ADDRESS 1
 #define SMART_WINDOW_ADDRESS 2
 
@@ -125,7 +125,7 @@ bool controlHub::DoorcheckThief()
 void controlHub::Alarmring()
 {
     output[0] = SMART_ALARM_ADDRESS;//alarm address
-    output[1] = 0;// to ring the alarm(output to smart alarm)
+    output[1] = 1;// to ring the alarm(output to smart alarm)
     value = 0;
     wireCommunicationOuput();
 }
