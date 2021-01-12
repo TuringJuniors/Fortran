@@ -116,7 +116,7 @@ void setup()
 //void* UPDATE(void* threadid)  replaced as interupt
 void input(int howMany)
 {
-  Serial.print("\nreceive input : ");
+    Serial.print("\nreceive input : ");
     if (Wire.available())
     {
         inputCode = Wire.read();
