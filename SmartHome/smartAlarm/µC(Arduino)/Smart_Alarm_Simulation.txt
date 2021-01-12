@@ -1,0 +1,5 @@
+https://www.tinkercad.com/things/hoJD9PJmdnZ-magnificent-gaaris/editel?sharecode=4cyC-1t-afS1pAaWNz_u11e6PlrghBzSjZOIVgenTzs
+
+for test purpose:
+
+the contro hub state are set to "thief detected" state instead request input from door
