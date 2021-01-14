@@ -20,8 +20,9 @@ int main()
 	case idleState:
 		while (window1.state == idleState) {
 			window1.getInputControlHub();
-			break;
+			
 		}
+		break;
 
 	case thiefDetected:
 		while (window1.state == thiefDetected) {
@@ -29,22 +30,22 @@ int main()
 
 			while (window1.distanceValue!= 0)
 			{
-				window1.getDistance();
-				window1.moveFoward();
+				window1.close();
 			}
-			break;
+			
 		}
+		break;
 	case smokeDetected:
 		while (window1.state == smokeDetected) {
 			window1.getInputControlHub();
 
 			while(window1.distanceValue!=window1.maxDistance)
 			{
-				window1.getDistance();
-				window1.moveBackward();
+				window1.open();
 			}
-			break;
+			
 		}
+		break;
 	}
 	
 
