@@ -23,7 +23,7 @@ public:
 
     void getInputHub();
     void getInputApp();
-    void setAlarm(int MODE,double volume, double time);
+    void setMorningAlarm(int MODE,double volume, double time);
     
     smartAlarm(controlHub* newController);
     
@@ -33,3 +33,11 @@ private:
 };
 
 #endif
+
+
+
+
+
+
+
+
